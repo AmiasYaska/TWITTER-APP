@@ -18,9 +18,23 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="container ">
+  
+    <header>
+      <nav class="container flex items-center py-4 px-8 mt-4 sm:mt-12 ">
+
+        <div class="text-3xl">My<span class="text-blue-600 text-xl ">School</span></div>
+
+        <ul class="flex flex-1 gap-12 text-page-blue items-center justify-end text-sm uppercase">
+          <li><%= link_to 'Home', root_path, class:"cursor-pointer text-blue-600 hover:text-black" %></li>
+          <li><%= link_to 'Contact', "#", class:"cursor-pointer text-blue-600 hover:text-black" %></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container items-left mt-12 px-16">
       <%= yield %>
-    </main>
+    </div>
+
   </body>
 </html>
