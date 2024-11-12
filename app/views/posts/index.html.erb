@@ -10,7 +10,6 @@
   <div id="posts" class="flex flex-col items-start min-w-full ">
     <% @posts.each do |post| %>
       <%= link_to post.title, post, class:"mb-4" %>
-      <%= post.body %>
       
     <% end %>
   </div>

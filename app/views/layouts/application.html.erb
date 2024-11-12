@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Twitter App" %></title>
+    <title>My School</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -18,7 +18,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="container ">
+  <body class="container bg-gray-300 ">
   
     <header>
       <nav class="container flex items-center py-4 px-8 mt-4 sm:mt-12 ">
@@ -35,6 +35,9 @@
     <div class="container items-left mt-12 px-16">
       <%= yield %>
     </div>
+
+    <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
   </body>
 </html>
