@@ -6,6 +6,10 @@
 
     <%= render @post %>
 
+    <div>
+      Views <%= @post.views_count%>
+    </div>
+
     <%= link_to "Edit post", edit_post_path(@post), class: "mt-2 rounded-full py-2 px-4 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Delete post", @post, method: :delete, class: "mt-2 rounded-full py-2 px-4 bg-gray-100 font-medium" %>
