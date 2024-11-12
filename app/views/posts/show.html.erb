@@ -3,8 +3,6 @@
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-
-   
     
     <%= render @post %>
 
@@ -18,7 +16,7 @@
 
     <h3 class="text-3xl text-blue-400 mt-6">Comments</h3>
 
-    <div class="mt-5 ">
+    <div class="mt-5 items-start ">
       <% @comments.each do |comment|%>
         <div class="mb-3"> <%= comment.user.email%> <%= comment.content %></div>
       <% end %>
@@ -39,5 +37,8 @@
     <div class="inline-block ml-2">
       <%= button_to "Delete post", @post, method: :delete, class: "mt-2 rounded-full py-2 px-4 bg-gray-100 font-medium" %>
     </div>
+
+    <%= line_chart @post.views_count.group_by_day(:created_at).count %>
+
   </div>
 </div>

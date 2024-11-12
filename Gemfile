@@ -63,3 +63,6 @@ end
 gem "devise", "~> 4.9"
 
 gem "view_component", "~> 3.20"
+
+gem "chartkick", "~> 5.1"
+gem "groupdate", "~> 6.5"
