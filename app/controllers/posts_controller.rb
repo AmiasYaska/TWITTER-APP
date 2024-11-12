@@ -10,6 +10,27 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post.update(views_count: @post.views_count + 1)
+    @comment = Comment.new
+    @comments = @post.comments
+    @user = @post.user
+  end
+
+  def create_comment
+    @post = Post.friendly.find(params[:id])
+    @comment = @post.comments.build(comment_params)
+    @comment.user_id = current_user.id
+
+    if @comment.save 
+      redirect_to @post, notice: "Comment was successfully created"
+
+    else 
+      redirect_to @post, notice: "Failed to create comment"
+    end
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content)
+
   end
 
   # GET /posts/new
@@ -23,7 +44,8 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    # @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     respond_to do |format|
       if @post.save

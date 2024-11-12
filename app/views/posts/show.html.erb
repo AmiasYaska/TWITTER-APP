@@ -4,16 +4,36 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
+   
+    
     <%= render @post %>
 
     <div>
-      Views <%= @post.views_count%>
+      <%= @post.views_count %> Views
     </div>
 
     <div class="flex items-center gap-4 ">
-      <%= render 'like_button', user: current_user, post: @post %>
-      
+      <%= render 'like_button', user: current_user, post: @post %>      
     </div>
+
+    <h3 class="text-3xl text-blue-400 mt-6">Comments</h3>
+
+    <div class="mt-5 ">
+      <% @comments.each do |comment|%>
+        <div class="mb-3"> <%= comment.user.email%> <%= comment.content %></div>
+      <% end %>
+    </div>
+
+    <div class="mt-5">
+      <%= form_with(model: [@post, @comment], url: create_comment_post_path, method: :post) do |form| %>
+        <%= form.text_field :content, class:"bg-gray-400 px-2 py-1 text-white rounded-full placeholder-gray-50", placeholder: "Post your reply" %>
+        <%= form.text_field :user_id, value: current_user.id, type: "hidden" %>
+        <%= form.text_field :post_id, value: @post.id, type: "hidden" %>
+        <%= form.submit "Reply", class:"ml-4 px-2 py-1 bg-blue-600 rounded-full text-white hover:bg-blue-300" %>
+      <% end %>
+    </div>
+
+    
 
     <%= link_to "Edit post", edit_post_path(@post), class: "mt-2 rounded-full py-2 px-4 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
