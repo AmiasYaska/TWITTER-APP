@@ -10,12 +10,9 @@
       Views <%= @post.views_count%>
     </div>
 
-    <div class="flex items-center gap-3">
-      <%= link_to '#', class:"w-6" do %>
-        <%= render Icons::ThumbsUpComponent.new %>
-      <% end %>
+    <div class="flex items-center gap-4 ">
+      <%= render 'like_button', user: current_user, post: @post %>
       
-      <%= @post.likes.count%>
     </div>
 
     <%= link_to "Edit post", edit_post_path(@post), class: "mt-2 rounded-full py-2 px-4 bg-gray-100 inline-block font-medium" %>
