@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments
     @user = @post.user
+    @post.views.create!(ip: request.ip, user_agent: request.user_agent)
   end
 
   def create_comment
