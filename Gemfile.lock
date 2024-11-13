@@ -120,6 +120,7 @@ GEM
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
     ffi (1.17.0-x86_64-linux-musl)
+    followability (1.1.1)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
@@ -360,6 +361,7 @@ DEPENDENCIES
   chartkick (~> 5.1)
   debug
   devise (~> 4.9)
+  followability (~> 1.1)
   friendly_id (~> 5.5.0)
   groupdate (~> 6.5)
   image_processing (~> 1.2)

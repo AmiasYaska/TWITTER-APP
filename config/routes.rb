@@ -9,6 +9,14 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'profile/:id/follow', to: 'profile#follow', as: 'follow'
+  post 'profile/:id/unfollow', to: 'profile#unfollow', as: 'unfollow'
+  post 'profile/:id/accept', to: 'profile#accept', as: 'accept'
+  post 'profile/:id/decline', to: 'profile#decline', as: 'decline'
+  post 'profile/:id/cancel', to: 'profile#cancel', as: 'cancel'
+
+  get 'profile/:id', to: 'profile#show', as: 'profile'
+  
   # post_follower_path(@post) # => POST /posts/:post_id/follower
   # post_follower_path(@post, method: :delete) # => DELETE /posts/:post_id/follower
 

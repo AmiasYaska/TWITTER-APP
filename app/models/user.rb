@@ -8,4 +8,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :posts
   
+  followability
+
+  def unfollow(user)
+    followerable_relationships.where(followable_id: user.id).destroy_all
+  end
+  
 end

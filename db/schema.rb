@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_13_100852) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_13_101859) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -57,6 +57,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_13_100852) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "followability_relationships", force: :cascade do |t|
+    t.string "followerable_type", null: false
+    t.integer "followerable_id", null: false
+    t.string "followable_type", null: false
+    t.integer "followable_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_type", "followable_id"], name: "index_followability_relationships_on_followable"
+    t.index ["followerable_type", "followerable_id"], name: "index_followability_relationships_on_followerable"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

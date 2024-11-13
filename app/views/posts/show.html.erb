@@ -3,8 +3,38 @@
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-
     
+<% if current_user %>
+  <h1><%= @user.email %></h1>
+
+  <% if current_user != @user %> <!-- Check if it's not the current user's own profile -->
+    <% if current_user.following?(@user) %>
+      <%= button_to "Unfollow", unfollow_path(@user) %>
+    <% elsif current_user.sent_follow_request_to?(@user) %>
+      <%= button_to "Cancel follow request", cancel_path(@user) %>
+    <% else %>
+      <%= button_to "Follow", follow_path(@user) %>
+    <% end %>
+  <% end %>
+
+  <!-- Follow request section -->
+  <% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.email %> wants to follow you
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <%= button_to "Decline", decline_path(request.followerable) %>
+  <% end %>
+  
+  <hr />
+
+  <!-- List followers and link to their profiles -->
+  <% current_user.followers.each do |user| %>
+    <%= link_to user.email, profile_path(user) %> is following you
+    <%= button_to "Unfollow", unfollow_path(user) %>
+  <% end %>
+<% else %>
+  <%= link_to "Log in", new_user_session_path %>
+<% end %>
+
     <%= render @post %>
 
     <div>
@@ -19,7 +49,7 @@
 
     <div class="mt-5 items-start ">
       <% @comments.each do |comment|%>
-        <div class="mb-3"> <%= comment.user.email%> <%= comment.content %></div>
+        <div class="mb-3"> <%= comment.user.email%>: <%= comment.content %></div>
       <% end %>
     </div>
 
